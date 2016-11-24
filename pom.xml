@@ -13,7 +13,7 @@
     
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
-        Maven mixin providing the ability to run various static analysis plugins
+        Maven mixin for the "standard" set of plugins.
     </description>
     
     <url>https://github.com/danhaywood/java-mavenmixin-standard</url>
