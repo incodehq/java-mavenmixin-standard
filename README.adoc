@@ -39,6 +39,7 @@ To configure:
     <mavenmixin-standard.version>0.0.2</mavenmixin-standard.version>
 
     <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
+    <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
@@ -60,6 +61,10 @@ and: +
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>${maven-clean-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
