@@ -30,7 +30,69 @@ This module was initially developed for use within link:http://isis.apache.org[A
 
 To configure:
 
-* add the following to the `pom.xml` of each module: +
+* copy and paste the following into either the `pom.xml` of the consuming module or (better still) the `pom.xml` of the top-level parent of the consuming module: +
++
+[source,xml]
+----
+<properties>
+    ...
+    <mavenmixin-standard.version>0.0.2</mavenmixin-standard.version>
+
+    <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
+    <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+    <maven-install-plugin.version>2.5.1</maven-install-plugin.version>
+    <maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
+    <maven-site-plugin.version>3.3</maven-site-plugin.version>
+    ...
+</properties>
+----
++
+and: +
++
+[source,xml]
+----
+<build>
+    <pluginManagement>
+        <plugins>
+            ...
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+            </plugin>
+            ...
+        </plugins>
+    </pluginManagement>
+</build>
+----
+
+
+* add the following to the `pom.xml` of the consuming module: +
 +
 [source,xml]
 ----
@@ -46,7 +108,7 @@ To configure:
                     <mixin>
                         <groupId>com.danhaywood.mavenmixin</groupId>
                         <artifactId>standard</artifactId>
-                        <version>0.0.1</version>
+                        <version>${mavenmixin-standard.version}</version>
                     </mixin>
                 </mixins>
             </configuration>
@@ -55,12 +117,6 @@ To configure:
 </build>
 ----
 
-
-
-[WARNING]
-====
-With multi-module builds it won't work to simply add this maven mixin to the `pom.xml` of the parent module; instead the mixin must be added to all child modules (favour composition over inheritance).
-====
 
 
 
@@ -73,6 +129,7 @@ None currently
 
 == Change Log
 
+* `0.0.2` - updates README for properties and plugin management, shortens property names and profile id
 * `0.0.1` - first release
 
 
@@ -126,8 +183,8 @@ For example:
 
 [source]
 ----
-sh release.sh 0.0.1 \
-              0.0.2-SNAPSHOT \
+sh release.sh 0.0.2 \
+              0.0.3-SNAPSHOT \
               dan@haywood-associates.co.uk \
               "this is not really my passphrase"
 ----
@@ -147,7 +204,7 @@ If the script completes successfully, then push changes:
 [source]
 ----
 git push origin master
-git push origin 0.0.1
+git push origin 0.0.2
 ----
 
 If the script fails to complete, then identify the cause, perform a `git reset --hard` to start over and fix the issue before trying again.
