@@ -7,7 +7,7 @@
     
     <groupId>com.danhaywood.mavenmixin</groupId>
     <artifactId>standard</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
 
     <packaging>pom</packaging>
     
