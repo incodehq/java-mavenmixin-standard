@@ -1,4 +1,4 @@
-= java-mavenmixin-staticanalysis
+= java-mavenmixin-standard
 :_imagesdir: ./
 :toc:
 
@@ -30,13 +30,20 @@ This module was initially developed for use within link:http://isis.apache.org[A
 
 To configure:
 
-* copy and paste the following into either the `pom.xml` of the consuming module or (better still) the `pom.xml` of the top-level parent of the consuming module: +
+* specify the plugin versions.
+
++
+There's an easy way, or a more long-winded way:
+
+** For the *easy way*, simply inherit from the appropriate version of link:https://github.com/incodehq/incode-build[incodehq:incode-build].
+
+** For the *long-winded way*, copy and paste the following into either the `pom.xml` of the consuming module or (better still) the `pom.xml` of the top-level parent of the consuming module: +
 +
 [source,xml]
 ----
 <properties>
     ...
-    <mavenmixin-standard.version>0.0.2</mavenmixin-standard.version>
+    <mavenmixin-standard.version>0.0.4</mavenmixin-standard.version>
 
     <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
     <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
@@ -96,19 +103,6 @@ and: +
 </build>
 ----
 
-* optionally, update the following properties in the consuming module's `pom.xml`: +
-+
-[source,xml]
-----
-<properties>
-    <compiler-plugin.source>1.8</compiler-plugin.source>
-    <compiler-plugin.target>1.8</compiler-plugin.target>
-    <compiler-plugin.compilerArgument>-parameters</compiler-plugin.compilerArgument>
-</properties>
-----
-+
-The values shown are the defaults, so these properties need only be defined if you require different values.
-
 * add the following to the `pom.xml` of the consuming module: +
 +
 [source,xml]
@@ -134,7 +128,54 @@ The values shown are the defaults, so these properties need only be defined if y
 </build>
 ----
 
+* as a property, specify the artifact's Java 9 module name:
 
++
+[source,xml]
+----
+<properties>
+    <jar-plugin.automaticModuleName>com.mycompany.myapp.foobar</jar-plugin.automaticModuleName>
+</properties>
+----
+
+* optionally, update the following properties in the consuming module's `pom.xml`: +
++
+[source,xml]
+----
+<properties>
+    <compiler-plugin.source>1.8</compiler-plugin.source>
+    <compiler-plugin.target>1.8</compiler-plugin.target>
+    <compiler-plugin.compilerArgument>-parameters</compiler-plugin.compilerArgument>
+</properties>
+----
++
+The values shown are the defaults, so these properties need only be defined if you require different values.
+
+
+If you are using git, you might also want to configure the link:https://github.com/ktoso/maven-git-commit-id-plugin[git-commit-id-plugin] to populate the ${git.commit.id} property.
+This will then be included within the jar's manifest (`META-INF/MANIFEST.MF`) as the `SCM-Revision` property.
+For example:
+
+[source,xml]
+----
+<plugin>
+    <groupId>pl.project13.maven</groupId>
+    <artifactId>git-commit-id-plugin</artifactId>
+    <version>2.2.3</version>
+    <executions>
+        <execution>
+            <id>get-the-git-infos</id>
+            <goals>
+                <goal>revision</goal>
+            </goals>
+            <phase>validate</phase>
+        </execution>
+    </executions>
+    <configuration>
+        <dotGitDirectory>${project.basedir}/../.git</dotGitDirectory>
+    </configuration>
+</plugin>
+----
 
 
 
@@ -146,10 +187,10 @@ None currently
 
 == Change Log
 
+* `0.0.4` - adds support for `Automatic-Module-Name` and `SCM-Revision` in the manifest of the built jar file, improves README configuration guidelines
 * `0.0.3` - allows the compiler plugin (source, target and compilerArguments) to be optionally overridden
 * `0.0.2` - updates README for properties and plugin management, shortens property names and profile id
 * `0.0.1` - first release
-
 
 
 
@@ -201,8 +242,8 @@ For example:
 
 [source]
 ----
-sh release.sh 0.0.3 \
-              0.0.4-SNAPSHOT \
+sh release.sh 0.0.4 \
+              0.0.5-SNAPSHOT \
               dan@haywood-associates.co.uk \
               "this is not really my passphrase"
 ----
@@ -221,7 +262,7 @@ If the script completes successfully, then push changes:
 
 [source]
 ----
-git push origin master && git push origin 0.0.3
+git push origin master && git push origin 0.0.4
 ----
 
 If the script fails to complete, then identify the cause, perform a `git reset --hard` to start over and fix the issue before trying again.

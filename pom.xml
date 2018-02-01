@@ -47,6 +47,11 @@
             </activation>
 
             <properties>
+                <jar-plugin.automaticModuleName></jar-plugin.automaticModuleName>
+<!--
+                <git.commit.id>UNKNOWN</git.commit.id>
+-->
+
                 <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
                 <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
                 <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
@@ -111,6 +116,10 @@
                                     <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                                     <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 </manifest>
+                                <manifestEntries>
+                                    <Automatic-Module-Name>${jar-plugin.automaticModuleName}</Automatic-Module-Name>
+                                    <SCM-Revision>${git.commit.id.abbrev}</SCM-Revision>
+                                </manifestEntries>
                             </archive>
                         </configuration>
                     </plugin>
