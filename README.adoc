@@ -152,7 +152,7 @@ and: +
 The values shown are the defaults, so these properties need only be defined if you require different values.
 
 
-If you are using git, you might also want to configure the link:https://github.com/ktoso/maven-git-commit-id-plugin[git-commit-id-plugin] to populate the ${git.commit.id} property.
+If you are using git, you might also want to configure the link:https://github.com/ktoso/maven-git-commit-id-plugin[git-commit-id-plugin] to populate the ${git.commit.id.abbrev} property.
 This will then be included within the jar's manifest (`META-INF/MANIFEST.MF`) as the `SCM-Revision` property.
 For example:
 
@@ -172,7 +172,7 @@ For example:
         </execution>
     </executions>
     <configuration>
-        <dotGitDirectory>${project.basedir}/../.git</dotGitDirectory>
+        <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
     </configuration>
 </plugin>
 ----
