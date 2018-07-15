@@ -5,7 +5,7 @@
     
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.danhaywood.mavenmixin</groupId>
+    <groupId>org.incode.mavenmixin</groupId>
     <artifactId>standard</artifactId>
     <version>0.0.5-SNAPSHOT</version>
 
@@ -16,7 +16,7 @@
         Maven mixin for the "standard" set of plugins.
     </description>
     
-    <url>https://github.com/danhaywood/java-mavenmixin-standard</url>
+    <url>https://github.com/incodehq/java-mavenmixin-standard</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -25,9 +25,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git@github.com:danhaywood/java-mavenmixin-standard.git</connection>
-        <developerConnection>scm:git:git@github.com:danhaywood/java-mavenmixin-standard.git</developerConnection>
-        <url>git@github.com:danhaywood/java-mavenmixin-standard.git</url>
+        <connection>scm:git:git@github.com:incodehq/java-mavenmixin-standard.git</connection>
+        <developerConnection>scm:git:git@github.com:incodehq/java-mavenmixin-standard.git</developerConnection>
+        <url>git@github.com:incodehq/java-mavenmixin-standard.git</url>
     </scm>
     <developers>
         <developer>
@@ -140,7 +140,7 @@
         </profile>
 
         <profile>
-            <id>danhaywood-mavenmixin-sonatyperelease</id>
+            <id>sonatyperelease</id>
             <!-- 
             this profile is not part of the mixin, but is required to be defined as a profile
             in order to release this mixin pom.xml to Maven Central repo

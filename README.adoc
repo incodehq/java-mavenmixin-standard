@@ -117,8 +117,8 @@ and: +
             <configuration>
                 <mixins>
                     <mixin>
-                        <groupId>com.danhaywood.mavenmixin</groupId>
-                        <artifactId>standard</artifactId>
+                        <groupId>org.incode</groupId>
+                        <artifactId>java-mavenmixin-standard</artifactId>
                         <version>${mavenmixin-standard.version}</version>
                     </mixin>
                 </mixins>
